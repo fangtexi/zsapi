@@ -1,0 +1,11 @@
+server:
+  port: 8125
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: api_route
+          uri: http://localhost:8124
+          predicates:
+            - Path=/api/**

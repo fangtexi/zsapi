@@ -2,11 +2,13 @@ package com.zsapi.backend.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.google.gson.Gson;
 import com.zsapi.backend.annotation.AuthCheck;
 import com.zsapi.backend.common.*;
 import com.zsapi.backend.constant.CommonConstant;
 import com.zsapi.backend.exception.BusinessException;
 import com.zsapi.backend.model.dto.interfaceInfo.InterfaceInfoAddRequest;
+import com.zsapi.backend.model.dto.interfaceInfo.InterfaceInfoInvokeRequest;
 import com.zsapi.backend.model.dto.interfaceInfo.InterfaceInfoQueryRequest;
 import com.zsapi.backend.model.dto.interfaceInfo.InterfaceInfoUpdateRequest;
 import com.zsapi.backend.model.entity.InterfaceInfo;
@@ -253,6 +255,44 @@ public class InterfaceInfoController {
         interfaceInfo1.setId(id);
         interfaceInfo1.setStatus(InterfaceInfoStatusEnum.OFFLINE.getValue());
         boolean result = interfaceInfoService.updateById(interfaceInfo1);
+        return ResultUtils.success(result);
+    }
+
+    /**
+     * @description: 调用接口
+     * @author: zzs
+     * @date: 2023/3/20 20:53
+     * @param: interfaceInfoInvokeRequest
+     * @param: request
+     * @return: com.zsapi.backend.common.BaseResponse<java.lang.Object>
+     **/
+    @PostMapping("/invoke")
+    public BaseResponse<Object> invokeInterfaceInfo(@RequestBody InterfaceInfoInvokeRequest interfaceInfoInvokeRequest,
+                                                     HttpServletRequest request) {
+        if (interfaceInfoInvokeRequest == null || interfaceInfoInvokeRequest.getId() <= 0) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        String requestParams = interfaceInfoInvokeRequest.getUserRequestParams();
+        // 判断接口是否存在 接口是否在线
+        Long id = interfaceInfoInvokeRequest.getId();
+        InterfaceInfo interfaceInfo = interfaceInfoService.getById(id);
+        if (interfaceInfo == null) {
+            throw new BusinessException(ErrorCode.NOT_FOUND_ERROR);
+        }
+        if (interfaceInfo.getStatus() == InterfaceInfoStatusEnum.OFFLINE.getValue()) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR,"接口关闭");
+        }
+        // 获取用户的accessKey和secrectKey
+        User loginUser = userService.getLoginUser(request);
+        String accessKey = loginUser.getAccessKey();
+        String secretKey = loginUser.getSecretKey();
+        // 通过ZsApiClient调用接口
+        //todo 根据不同接口地址调用接口
+        ZsApiClient zsApiClient = new ZsApiClient(accessKey, secretKey);
+        Gson gson = new Gson();
+        com.zsapi.client.modal.entity.User user = gson.fromJson(requestParams, com.zsapi.client.modal.entity.User.class);
+        String result = zsApiClient.getUserNameByPost(user);
+
         return ResultUtils.success(result);
     }
 
