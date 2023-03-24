@@ -32,6 +32,7 @@ public class ZsApiClient {
      **/
     public Map<String,String> getHeaders() {
         Map<String, String> map = new HashMap<>();
+        map.put("accessKey",accessKey);
         map.put("sign", SignUtils.getSign(accessKey,secretKey));
         return map;
     }
@@ -45,7 +46,7 @@ public class ZsApiClient {
      **/
     public String getUserNameByPost(User user) {
         String json = JSONUtil.toJsonStr(user);
-        String result = HttpRequest.post("http://localhost:8124/name/user")
+        String result = HttpRequest.post("http://localhost:8125/api/name/user")
                 // 添加请求头
                 .addHeaders(getHeaders())
                 .body(json)

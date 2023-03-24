@@ -15,8 +15,6 @@ import org.springframework.stereotype.Service;
 public class InterfaceInfoServiceImpl extends ServiceImpl<InterfaceInfoMapper, InterfaceInfo>
     implements InterfaceInfoService {
 
-
-
     @Override
     public void validInterfaceInfo(InterfaceInfo interfaceInfo, boolean b) {
 

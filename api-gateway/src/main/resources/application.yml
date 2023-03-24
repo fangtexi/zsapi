@@ -2,6 +2,8 @@ server:
   port: 8125
 
 spring:
+  main:
+    web-application-type: reactive
   cloud:
     gateway:
       routes:

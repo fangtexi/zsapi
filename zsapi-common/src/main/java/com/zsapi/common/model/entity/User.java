@@ -1,4 +1,4 @@
-package com.zsapi.zsapicommon.model.entity;
+package com.zsapi.common.model.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
@@ -51,12 +51,12 @@ public class User implements Serializable {
     private String userPassword;
 
     /**
-     * 签名 accessKey
+     * 用户签名
      */
     private String accessKey;
 
     /**
-     * 签名 secretKey
+     * 用户密钥
      */
     private String secretKey;
 

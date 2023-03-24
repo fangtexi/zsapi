@@ -10,6 +10,7 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+
 /**
  * Knife4j 接口文档配置
  * https://doc.xiaominfo.com/knife4j/documentation/get_start.html
@@ -31,7 +32,7 @@ public class Knife4jConfig {
                         .build())
                 .select()
                 // 指定 Controller 扫描包路径
-                .apis(RequestHandlerSelectors.basePackage("com.InterfaceInfo.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.zsapi.backend.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
