@@ -1,7 +1,7 @@
 package com.zsapi.backend.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.zsapi.backend.model.entity.User;
+import com.zsapi.common.model.entity.User;
 
 /**
  * @Entity com.InterfaceInfo.model.domain.User

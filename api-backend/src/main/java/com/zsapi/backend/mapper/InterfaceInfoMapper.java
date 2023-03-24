@@ -1,7 +1,7 @@
 package com.zsapi.backend.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.zsapi.backend.model.entity.InterfaceInfo;
+import com.zsapi.common.model.entity.InterfaceInfo;
 
 /**
 * @author 23951

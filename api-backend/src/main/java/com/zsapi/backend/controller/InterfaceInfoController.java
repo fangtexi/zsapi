@@ -11,12 +11,12 @@ import com.zsapi.backend.model.dto.interfaceInfo.InterfaceInfoAddRequest;
 import com.zsapi.backend.model.dto.interfaceInfo.InterfaceInfoInvokeRequest;
 import com.zsapi.backend.model.dto.interfaceInfo.InterfaceInfoQueryRequest;
 import com.zsapi.backend.model.dto.interfaceInfo.InterfaceInfoUpdateRequest;
-import com.zsapi.backend.model.entity.InterfaceInfo;
-import com.zsapi.backend.model.entity.User;
 import com.zsapi.backend.model.enums.InterfaceInfoStatusEnum;
-import com.zsapi.backend.service.InterfaceInfoService;
-import com.zsapi.backend.service.UserService;
 import com.zsapi.client.client.ZsApiClient;
+import com.zsapi.common.model.entity.InterfaceInfo;
+import com.zsapi.common.model.entity.User;
+import com.zsapi.common.service.InterfaceInfoService;
+import com.zsapi.common.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
@@ -39,6 +39,7 @@ public class InterfaceInfoController {
     @Resource
     private UserService userService;
     @Resource
+
     private InterfaceInfoService interfaceInfoService;
     @Resource
     private ZsApiClient zsApiClient;

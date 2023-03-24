@@ -2,8 +2,8 @@ package com.zsapi.backend.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zsapi.backend.mapper.InterfaceInfoMapper;
-import com.zsapi.backend.model.entity.InterfaceInfo;
-import com.zsapi.backend.service.InterfaceInfoService;
+import com.zsapi.common.model.entity.InterfaceInfo;
+import com.zsapi.common.service.InterfaceInfoService;
 import org.springframework.stereotype.Service;
 
 /**

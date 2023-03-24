@@ -8,14 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * 用户服务
- *
- * @author yupi
+ * @author zzs
  */
 public interface UserService extends IService<User> {
 
     /**
      * 用户注册
-     *
      * @param userAccount   用户账户
      * @param userPassword  用户密码
      * @param checkPassword 校验密码
@@ -25,7 +23,6 @@ public interface UserService extends IService<User> {
 
     /**
      * 用户登录
-     *
      * @param userAccount  用户账户
      * @param userPassword 用户密码
      * @param request
@@ -35,7 +32,6 @@ public interface UserService extends IService<User> {
 
     /**
      * 获取当前登录用户
-     *
      * @param request
      * @return
      */
@@ -43,7 +39,6 @@ public interface UserService extends IService<User> {
 
     /**
      * 是否为管理员
-     *
      * @param request
      * @return
      */
@@ -51,7 +46,6 @@ public interface UserService extends IService<User> {
 
     /**
      * 用户注销
-     *
      * @param request
      * @return
      */
