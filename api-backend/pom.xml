@@ -85,16 +85,16 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <!-- actuator -->
+        <!-- &lt;!&ndash; actuator &ndash;&gt; -->
         <!-- <dependency> -->
         <!--     <groupId>org.springframework.boot</groupId> -->
         <!--     <artifactId>spring-boot-starter-actuator</artifactId> -->
         <!-- </dependency> -->
-        <!-- &lt;!&ndash; spring-cloud-starter-alibaba-nacos-discovery &ndash;&gt; -->
-        <!-- <dependency> -->
-        <!--     <groupId>com.alibaba.cloud</groupId> -->
-        <!--     <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId> -->
-        <!-- </dependency> -->
+        <!-- spring-cloud-starter-alibaba-nacos-discovery -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
         <!-- api-client-sdk -->
         <dependency>
             <groupId>com.zsapi</groupId>
