@@ -24,6 +24,45 @@ public class ZsApiClient {
     private String accessKey;
     private String secretKey;
 
+    private final String REQUEST_PREFIX = "/api";
+    private final String HOST = "localhost:8125";
+    // private final String HOST = ""
+
+    public Object invokeMethod(String path,String params,String method) {
+
+        return null;
+
+    }
+
+    public Object postMethod(String path,String params){
+        // 拼接请求参数
+
+        // 转换请求参数字符串 =>
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append("http://").append(HOST).append(REQUEST_PREFIX).append(path);
+        String result = HttpRequest.get(stringBuffer.toString())
+                // 添加请求头
+                .addHeaders(getHeaders())
+                // .body()
+                .execute().body();
+        return null;
+    }
+
+    public Object getMethod(String path,String params){
+        // 拼接请求参数
+
+        // 转换请求参数字符串 =>
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append("http://").append(HOST).append(REQUEST_PREFIX).append(path);
+        String result = HttpRequest.get(stringBuffer.toString())
+                // 添加请求头
+                .addHeaders(getHeaders())
+                // .body()
+                .execute().body();
+        return null;
+    }
+
+
     /**
      * @description: 封装请求头
      * @author: zzs

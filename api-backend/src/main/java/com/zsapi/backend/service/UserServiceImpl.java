@@ -1,4 +1,4 @@
-package com.zsapi.backend.service.impl;
+package com.zsapi.backend.service;
 
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.crypto.digest.DigestUtil;
@@ -11,7 +11,7 @@ import com.zsapi.common.model.entity.User;
 import com.zsapi.common.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.stereotype.Service;
+import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.util.DigestUtils;
 
 import javax.annotation.Resource;
@@ -26,8 +26,8 @@ import static com.zsapi.backend.constant.UserConstant.USER_LOGIN_STATE;
  *
  * @author yupi
  */
-@Service
 @Slf4j
+@DubboService
 public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         implements UserService {
 

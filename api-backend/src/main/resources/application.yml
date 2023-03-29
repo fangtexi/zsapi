@@ -3,6 +3,9 @@ server:
   servlet:
     context-path: /api
 spring:
+  main:
+    allow-bean-definition-overriding: true
+    allow-circular-references: true
   application:
     name: api-backend
   # DataSource Config
@@ -37,6 +40,19 @@ mybatis-plus:
       logic-delete-field: isDelete # ????????????(since 3.3.0,????????????2)
       logic-delete-value: 1 # ??????(??? 1)
       logic-not-delete-value: 0 # ??????(??? 0)
+# dubbo
+dubbo:
+  cloud:
+    subscribed-services: api-backend
+  scan:
+    base-packages: com.zsapi.backend.service
+  registry:
+    address: nacos://${spring.cloud.nacos.discovery.server-addr}
+    timeout: 10000
+  protocol:
+    name: dubbo
+    port: -1
+
 zsapi:
   client:
     access-key: 2294ad69a3c0f703b3e0c66ce5fa53b9

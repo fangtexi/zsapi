@@ -1,4 +1,4 @@
-package com.zsapi.backend.service.impl.inner;
+package com.zsapi.backend.service.inner;
 
 /**
  * @author zzs
@@ -8,6 +8,7 @@ package com.zsapi.backend.service.impl.inner;
 
 import com.zsapi.common.service.UserInterfaceInfoService;
 import com.zsapi.common.service.inner.InnerUserInterfaceInfoService;
+import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -17,7 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @Date 2023/3/25 20:48
  * @Version 1.0
  */
-
+@DubboService
 public class InnerUserInterfaceInfoServiceImpl implements InnerUserInterfaceInfoService {
 
     @Autowired

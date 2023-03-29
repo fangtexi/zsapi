@@ -1,4 +1,4 @@
-package com.zsapi.backend.service.impl;
+package com.zsapi.backend.service;
 
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -7,6 +7,7 @@ import com.zsapi.backend.exception.BusinessException;
 import com.zsapi.backend.mapper.UserInterfaceInfoMapper;
 import com.zsapi.common.model.entity.UserInterfaceInfo;
 import com.zsapi.common.service.UserInterfaceInfoService;
+import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Service;
 * @description 针对表【user_interface_info(用户调用接口关系表)】的数据库操作Service实现
 * @createDate 2023-03-25 20:37:54
 */
-@Service
+@DubboService
 public class UserInterfaceInfoServiceImpl extends ServiceImpl<UserInterfaceInfoMapper, UserInterfaceInfo>
     implements UserInterfaceInfoService{
 

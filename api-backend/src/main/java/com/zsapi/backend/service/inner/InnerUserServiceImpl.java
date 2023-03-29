@@ -1,4 +1,4 @@
-package com.zsapi.backend.service.impl.inner;/**
+package com.zsapi.backend.service.inner;/**
  * @author zzs
  * @date 2023/3/24 21:39:21
  * @version 1.0
@@ -11,6 +11,7 @@ import com.zsapi.backend.mapper.UserMapper;
 import com.zsapi.common.model.entity.User;
 import com.zsapi.common.service.inner.InnerUserService;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -19,12 +20,11 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @Date 2023/3/24 21:39
  * @Version 1.0
  */
-
+@DubboService
 public class InnerUserServiceImpl implements InnerUserService {
 
     @Autowired
     private UserMapper userMapper;
-
 
     @Override
     public User getInvokeUser(String accessKey) {

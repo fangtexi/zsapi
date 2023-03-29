@@ -1,4 +1,4 @@
-package com.zsapi.backend.service.impl.inner;/**
+package com.zsapi.backend.service.inner;/**
  * @author zzs
  * @date 2023/3/24 21:47:24
  * @version 1.0
@@ -11,6 +11,7 @@ import com.zsapi.backend.mapper.InterfaceInfoMapper;
 import com.zsapi.common.model.entity.InterfaceInfo;
 import com.zsapi.common.service.inner.InnerInterfaceInfoService;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -19,7 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @Date 2023/3/24 21:47
  * @Version 1.0
  */
-
+@DubboService
 public class InnerInterfaceInfoServiceImpl implements InnerInterfaceInfoService {
 
     @Autowired
@@ -27,7 +28,7 @@ public class InnerInterfaceInfoServiceImpl implements InnerInterfaceInfoService 
 
     @Override
     public InterfaceInfo getInterfaceInfo(String path, String method) {
-        if (!StringUtils.isAnyBlank(path,method)) {
+        if (StringUtils.isAnyBlank(path,method)) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
         LambdaQueryWrapper<InterfaceInfo> wrapper = new LambdaQueryWrapper<>();

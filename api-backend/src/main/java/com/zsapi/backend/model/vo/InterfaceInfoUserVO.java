@@ -1,66 +1,60 @@
-package com.zsapi.common.model.entity;
+package com.zsapi.backend.model.vo;/**
+ * @author zzs
+ * @date 2023/3/29 20:57:32
+ * @version 1.0
+ */
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 接口信息
- * @TableName interface_info
+ * @Description TODO
+ * @ClassName InterfaceInfoUserVO
+ * @Author 23951
+ * @Date 2023/3/29 20:57
+ * @Version 1.0
  */
-@TableName(value ="interface_info")
 @Data
-public class InterfaceInfo implements Serializable {
+public class InterfaceInfoUserVO implements Serializable {
     /**
      * 主键
      */
-    @TableId(type = IdType.AUTO)
     private Long id;
 
     /**
-     * 
+     *
      */
     private String name;
 
     /**
-     * 
+     * 接口状态
+     */
+    private int status;
+
+    /**
+     *
      */
     private String description;
 
     /**
-     * 
-     */
-    private String url;
-
-    /**
-     * 
+     *
      */
     private String requestHeader;
 
     /**
-     * 
+     *
      */
     private String responseHeader;
 
     /**
-     * 接口状态（0-关闭，1-开启）
-     */
-    private Integer status;
-
-    /**
-     * 
+     *
      */
     private String method;
-
-    /**
-     * 创建人
-     */
-    private Long userId;
 
     /**
      * 创建时间
@@ -73,11 +67,6 @@ public class InterfaceInfo implements Serializable {
     private Date updateTime;
 
     /**
-     * 是否删除(0-未删, 1-已删)
-     */
-    private Integer isDelete;
-
-    /**
      * 请求参数
      */
     private String requestParams;
@@ -85,10 +74,6 @@ public class InterfaceInfo implements Serializable {
      * 请求uri
      */
     private String path;
-    /**
-     * 请求主机地址
-     */
-    private String host;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

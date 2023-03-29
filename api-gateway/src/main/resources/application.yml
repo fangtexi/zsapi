@@ -2,12 +2,34 @@ server:
   port: 8125
 
 spring:
+  application:
+    name: api-gateway
   main:
     web-application-type: reactive
+    allow-bean-definition-overriding: true
+    allow-circular-references: true
   cloud:
     gateway:
       routes:
         - id: api_route
-          uri: http://localhost:8124
+          uri: http://localhost:8123
           predicates:
             - Path=/api/**
+    nacos:
+      discovery:
+        server-addr: 192.168.66.100:8848
+dubbo:
+  cloud:
+    subscribed-services: "*"
+  registry:
+    # 注册至Nacos
+    address: nacos://192.168.66.100:8848
+    # 超时时间
+    timeout: 10000
+  protocol:
+    # 协议Dubbo
+    name: dubbo
+    # 端口号
+    port: -1
+  consumer:
+    check: false

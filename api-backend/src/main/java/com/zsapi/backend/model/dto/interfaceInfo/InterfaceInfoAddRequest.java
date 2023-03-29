@@ -55,11 +55,20 @@ public class InterfaceInfoAddRequest implements Serializable {
      */
     private Long userId;
 
-
     /**
      * 请求参数
      */
     private String requestParams;
+
+    /**
+     * 请求uri
+     */
+    private String path;
+
+    /**
+     * 请求主机地址
+     */
+    private String host;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
