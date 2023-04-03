@@ -2,3 +2,28 @@ server:
   port: 8124
   servlet:
     context-path: /api
+spring:
+  application:
+    name: api-interfaceInfo
+  main:
+    allow-bean-definition-overriding: true
+    allow-circular-references: true
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.66.100:8848
+dubbo:
+  cloud:
+    subscribed-services: "com.zsapi.common.service.inner.InnerUserInterfaceInfoService"
+  registry:
+    # 注册至Nacos
+    address: nacos://192.168.66.100:8848
+    # 超时时间
+    timeout: 10000
+  protocol:
+    # 协议Dubbo
+    name: dubbo
+    # 端口号
+    port: -1
+  consumer:
+    check: false

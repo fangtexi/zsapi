@@ -2,6 +2,7 @@ package com.zsapi.backend.service;
 
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.crypto.digest.DigestUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zsapi.backend.common.ErrorCode;
@@ -165,13 +166,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         // 仅管理员可查询
         Object userObj = request.getSession().getAttribute(USER_LOGIN_STATE);
         User user = (User) userObj;
-        System.out.println("我是管理员："+user);
+        System.out.println("我是管理员：" + user);
         return user != null && ADMIN_ROLE.equals(user.getUserRole());
     }
 
     /**
      * 用户注销
-     *
      * @param request
      */
     @Override
@@ -182,6 +182,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         // 移除登录态
         request.getSession().removeAttribute(USER_LOGIN_STATE);
         return true;
+    }
+
+    @Override
+    public User getByAccessKey(String accessKey) {
+        LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(User::getAccessKey,accessKey);
+        return this.getOne(wrapper);
     }
 
 }

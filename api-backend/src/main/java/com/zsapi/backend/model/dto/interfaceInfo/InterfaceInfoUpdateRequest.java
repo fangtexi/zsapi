@@ -70,6 +70,15 @@ public class InterfaceInfoUpdateRequest implements Serializable {
      */
     private String requestParams;
 
+    /**
+     * 请求uri
+     */
+    private String path;
+    /**
+     * 请求主机地址
+     */
+    private String host;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 }

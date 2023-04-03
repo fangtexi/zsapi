@@ -18,4 +18,6 @@ public interface InterfaceInfoService extends IService<InterfaceInfo> {
      * @param: b
      **/
     void validInterfaceInfo(InterfaceInfo interfaceInfo, boolean b);
+
+
 }

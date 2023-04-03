@@ -28,7 +28,7 @@ public class InnerUserServiceImpl implements InnerUserService {
 
     @Override
     public User getInvokeUser(String accessKey) {
-        if (!StringUtils.isBlank(accessKey)) {
+        if (StringUtils.isBlank(accessKey)) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
         LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();

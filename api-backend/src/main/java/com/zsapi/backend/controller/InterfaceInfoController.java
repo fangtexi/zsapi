@@ -52,6 +52,7 @@ public class InterfaceInfoController {
 
     /**
      * 创建
+     *
      * @param interfaceInfoAddRequest
      * @param request
      * @return
@@ -77,6 +78,7 @@ public class InterfaceInfoController {
 
     /**
      * 删除
+     *
      * @param deleteRequest
      * @param request
      * @return
@@ -103,13 +105,14 @@ public class InterfaceInfoController {
 
     /**
      * 更新
+     *
      * @param interfaceInfoUpdateRequest
      * @param request
      * @return
      */
     @PostMapping("/update")
     public BaseResponse<Boolean> updateInterfaceInfo(@RequestBody InterfaceInfoUpdateRequest interfaceInfoUpdateRequest,
-                                            HttpServletRequest request) {
+                                                     HttpServletRequest request) {
         if (interfaceInfoUpdateRequest == null || interfaceInfoUpdateRequest.getId() <= 0) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
@@ -134,6 +137,7 @@ public class InterfaceInfoController {
 
     /**
      * 根据 id 获取
+     *
      * @param id
      * @return
      */
@@ -144,12 +148,13 @@ public class InterfaceInfoController {
         }
         InterfaceInfo interfaceInfo = interfaceInfoService.getById(id);
         InterfaceInfoUserVO interfaceInfoUserVO = new InterfaceInfoUserVO();
-        BeanUtils.copyProperties(interfaceInfo,interfaceInfoUserVO);
+        BeanUtils.copyProperties(interfaceInfo, interfaceInfoUserVO);
         return ResultUtils.success(interfaceInfoUserVO);
     }
 
     /**
      * 获取列表（仅管理员可使用）
+     *
      * @param interfaceInfoQueryRequest
      * @return
      */
@@ -167,6 +172,7 @@ public class InterfaceInfoController {
 
     /**
      * 分页获取列表
+     *
      * @param interfaceInfoQueryRequest
      * @param request
      * @return
@@ -219,7 +225,7 @@ public class InterfaceInfoController {
         // todo 后期需要修改
         String userName = zsApiClient.getUserNameByPost(new com.zsapi.client.modal.entity.User("zzs"));
         if (StringUtils.isBlank(userName)) {
-            throw new BusinessException(ErrorCode.SYSTEM_ERROR,"接口验证失败");
+            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "接口验证失败");
         }
         // 修改接口状态
         InterfaceInfo interfaceInfo1 = new InterfaceInfo();
@@ -240,7 +246,7 @@ public class InterfaceInfoController {
     @PostMapping("/offline")
     @AuthCheck(mustRole = "admin")
     public BaseResponse<Boolean> offlineInterfaceInfo(@RequestBody IdRequest idRequest,
-                                                     HttpServletRequest request) {
+                                                      HttpServletRequest request) {
         if (idRequest == null || idRequest.getId() <= 0) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
@@ -269,7 +275,7 @@ public class InterfaceInfoController {
      **/
     @PostMapping("/invoke")
     public BaseResponse<Object> invokeInterfaceInfo(@RequestBody InterfaceInfoInvokeRequest interfaceInfoInvokeRequest,
-                                                     HttpServletRequest request) {
+                                                    HttpServletRequest request) {
         // 参数校验
         if (interfaceInfoInvokeRequest == null || interfaceInfoInvokeRequest.getId() <= 0) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
@@ -284,52 +290,47 @@ public class InterfaceInfoController {
             throw new BusinessException(ErrorCode.NOT_FOUND_ERROR);
         }
         if (interfaceInfo.getStatus() == InterfaceInfoStatusEnum.OFFLINE.getValue()) {
-            throw new BusinessException(ErrorCode.PARAMS_ERROR,"接口关闭");
+            throw new BusinessException(ErrorCode.PARAMS_ERROR, "接口关闭");
         }
         // 获取用户的 accessKey 和 secrectKey
         User loginUser = userService.getLoginUser(request);
         String accessKey = loginUser.getAccessKey();
         String secretKey = loginUser.getSecretKey();
-        // 接口路径、请求方法
-        String method = interfaceInfoInvokeRequest.getMethod();
-        String path = interfaceInfoInvokeRequest.getPath();
         // 通过ZsApiClient调用接口
-        ZsApiClient zsApiClient = new ZsApiClient(accessKey, secretKey);
-        Object result = zsApiClient.invokeMethod(path,requestParams,method);
-        log.info("接口路径 => " + 1);
-
+        String interfaceInfoName = interfaceInfo.getName();
+        Object result = null;
+        try {
+            result = reflectionInterface(ZsApiClient.class, interfaceInfoName, requestParams, accessKey, secretKey);
+        }catch (Exception e) {
+            log.info("接口调用出错 => " + e.getMessage());
+        }
         return ResultUtils.success(result);
     }
 
 
-    public Object reflectionInterface(Class<?> reflectionClass,String methName,String parameter,String accessKey,String secretKey) {
+    public Object reflectionInterface(Class<?> reflectionClass, String methName, String parameter, String accessKey, String secretKey) throws Exception {
         Object result = null;
-        try {
-            // 拿到Class对象的构造器
-            Constructor<?> constructor = reflectionClass.getDeclaredConstructor(String.class, String.class);
-            // 构造ZsApiClient的实例，同时传入 accessKey 和 secretKey
-            ZsApiClient zsapiClient = (ZsApiClient)constructor.newInstance(accessKey, secretKey);
-            // 获取 SDK 中所有的方法
-            Method[] methods = zsapiClient.getClass().getMethods();
-            // 根据方法名确定需要调用的方法
-            for (Method method:methods) {
-                if (method.getName().equals(methName)) {
-                    // 获取方法的参数类型
-                    Class<?>[] paramterTypes = method.getParameterTypes();
-                    Method method1;
-                    if (paramterTypes.length == 0) {
-                        method1 = zsapiClient.getClass().getMethod(methName);
-                        return method1.invoke(zsapiClient);
-                    }
-                    method1 = zsapiClient.getClass().getMethod(methName,paramterTypes[0]);
-                    Gson gson = new Gson();
-                    Object args = gson.fromJson(parameter, paramterTypes[0]);
-                    return result = method1.invoke(zsapiClient,args);
+        // 拿到Class对象的构造器
+        Constructor<?> constructor = reflectionClass.getDeclaredConstructor(String.class, String.class);
+        // 构造 ZsApiClient 的实例，同时传入 accessKey 和 secretKey
+        ZsApiClient zsapiClient = (ZsApiClient) constructor.newInstance(accessKey, secretKey);
+        // 获取 SDK 中所有的方法
+        Method[] methods = zsapiClient.getClass().getMethods();
+        // 根据方法名确定需要调用的方法
+        for (Method method : methods) {
+            if (method.getName().equals(methName)) {
+                // 获取方法的参数类型
+                Class<?>[] paramterTypes = method.getParameterTypes();
+                Method method1;
+                if (paramterTypes.length == 0) {
+                    method1 = zsapiClient.getClass().getMethod(methName);
+                    return method1.invoke(zsapiClient);
                 }
+                method1 = zsapiClient.getClass().getMethod(methName, paramterTypes[0]);
+                Gson gson = new Gson();
+                Object args = gson.fromJson(parameter, paramterTypes[0]);
+                return result = method1.invoke(zsapiClient, args);
             }
-
-        }catch (Exception e) {
-            log.info("接口调用出错 => " + e);
         }
         return result;
     }

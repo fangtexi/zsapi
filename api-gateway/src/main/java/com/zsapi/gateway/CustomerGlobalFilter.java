@@ -1,7 +1,12 @@
 package com.zsapi.gateway;
 
 import com.zsapi.client.util.SignUtils;
+import com.zsapi.common.model.entity.InterfaceInfo;
+import com.zsapi.common.model.entity.User;
+import com.zsapi.common.service.UserService;
+import com.zsapi.common.service.inner.InnerInterfaceInfoService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.reactivestreams.Publisher;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
@@ -35,6 +40,13 @@ import java.util.List;
 @Component
 public class CustomerGlobalFilter implements GlobalFilter, Ordered {
 
+    @DubboReference(check = false)
+    private UserService userService;
+    @DubboReference(check = false)
+    private InnerInterfaceInfoService innerInterfaceInfoService;
+
+    private final String INTERFACE_HOST = "http://localhost:8123";
+
     private static final List<String> IP_WHITE_LIST = Arrays.asList("127.0.0.1","localhost");
 
     @Override
@@ -42,9 +54,12 @@ public class CustomerGlobalFilter implements GlobalFilter, Ordered {
         ServerHttpResponse response = exchange.getResponse();
         // 1. 请求日志
         ServerHttpRequest request = exchange.getRequest();
+        String path = INTERFACE_HOST + request.getPath().value();
+        String method = request.getMethod().toString();
+
         log.info("请求唯一标识：",request.getId());
-        log.info("请求路径：",request.getPath().value());
-        log.info("请求方法：",request.getMethod());
+        log.info("请求路径：",path);
+        log.info("请求方法：",method);
         log.info("请求参数：",request.getQueryParams());
         log.info("请求来源地址：",request.getRemoteAddress());
         String sourceAdress = request.getLocalAddress().getHostString();
@@ -55,25 +70,36 @@ public class CustomerGlobalFilter implements GlobalFilter, Ordered {
         //     return response.setComplete();
         // }
 
-        // 3. 用户鉴权（判断ak，sk是否合法）（请求级别的鉴权）
         HttpHeaders headers = request.getHeaders();
         String accessKey = headers.getFirst("accessKey");
         String sign = headers.getFirst("sign");
-        // todo 防止重放攻击
-        //todo 从数据库中查询accessKey是否已经分配给用户
-        if (!"21c35ad418a380484550512bc0306992".equals(accessKey)) {
+        // 3. todo 防止重放攻击
+        // 4. 用户鉴权（判断ak，sk是否合法）
+        // 从数据库中查询 accessKey 是否已经分配给用户
+        User user = userService.getByAccessKey(accessKey);
+        if (user == null) {
             return handleNoAuth(response);
         }
-        //todo 从数据库中查询到secrectKey和accessKey生成签名，与用户传递的签名进行比较判断是否有权限
-        String sign1 = SignUtils.getSign(accessKey, "3223d3e89b8bec50b2bab1095fb5cd9b");
+        // 从数据库中查询到 secrectKey 和 accessKey 生成签名，与用户传递的签名进行比较判断是否有权限
+        String secretKey = user.getSecretKey();
+        String sign1 = SignUtils.getSign(accessKey, secretKey);
         if (!sign.equals(sign1)) {
             return handleNoAuth(response);
+
         }
+        // 5. 根据请求的方法名和请求类型，判断请求的模拟接口是否存在
+        InterfaceInfo interfaceInfo = null;
+        try {
+            //调用dubbo中的公共方法，查询接口是否存在
+            interfaceInfo = innerInterfaceInfoService.getInterfaceInfo(path, method);
 
-        // 4. 请求的模拟接口是否存在
-        // todo 从数据库中根据请求方法、请求名称、请求类型来判断请求存在
-
-        // 利用response装饰者，增强原有response的处理能力
+        } catch (Exception e) {
+            log.error("getInterfaceInfo error",e);
+        }
+        if (interfaceInfo == null) {
+            return handleNoAuth(response);
+        }
+        // 6. 利用response装饰者，增强原有response的处理能力
         return handleResponse(exchange,chain);
     }
 
@@ -116,7 +142,7 @@ public class CustomerGlobalFilter implements GlobalFilter, Ordered {
      **/
     public Mono<Void> handleResponse(ServerWebExchange exchange,GatewayFilterChain chain) {
         try {
-            //从交换寄拿响应对象
+            //从交换器中拿响应对象
             ServerHttpResponse originalResponse = exchange.getResponse();
             //缓冲区工厂，拿到缓存数据
             DataBufferFactory bufferFactory = originalResponse.bufferFactory();
@@ -137,7 +163,7 @@ public class CustomerGlobalFilter implements GlobalFilter, Ordered {
                             //往返回值里面写数据
                             //拼接字符串
                             return super.writeWith(fluxBody.map(dataBuffer -> {
-                                // 5. 接口调用成功 todo 接口调用次数+1
+                                // 7. 接口调用成功，接口调用次数加 1 todo 接口调用次数+1
                                 byte[] content = new byte[dataBuffer.readableByteCount()];
                                 dataBuffer.read(content);
                                 DataBufferUtils.release(dataBuffer);//释放掉内存

@@ -50,4 +50,13 @@ public interface UserService extends IService<User> {
      * @return
      */
     boolean userLogout(HttpServletRequest request);
+
+    /**
+     * 根据 accessKey 查询用户
+     * @author: zzs
+     * @date: 2023/3/30 22:35
+     * @param: accessKey
+     * @return: com.zsapi.common.model.entity.User
+     **/
+    User getByAccessKey(String accessKey);
 }

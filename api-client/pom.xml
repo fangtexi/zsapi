@@ -46,11 +46,6 @@
             <version>5.8.12</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>zsapi-common</artifactId>
-            <version>0.0.1</version>
-        </dependency>
     </dependencies>
 
 </project>
