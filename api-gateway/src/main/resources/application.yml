@@ -1,13 +1,13 @@
 server:
   port: 8125
-
 spring:
-  application:
-    name: api-gateway
   main:
-    web-application-type: reactive
     allow-bean-definition-overriding: true
     allow-circular-references: true
+    web-application-type: reactive
+  # 应用名称
+  application:
+    name: api-gateway
   cloud:
     gateway:
       routes:
@@ -17,13 +17,16 @@ spring:
             - Path=/api/**
     nacos:
       discovery:
-        server-addr: 192.168.66.100:8848
+        server-addr: 120.79.49.242:8848
+  profiles:
+    active: pro
+
 dubbo:
   cloud:
     subscribed-services: "*"
   registry:
     # 注册至Nacos
-    address: nacos://192.168.66.100:8848
+    address: nacos://120.79.49.242:8848
     # 超时时间
     timeout: 10000
   protocol:

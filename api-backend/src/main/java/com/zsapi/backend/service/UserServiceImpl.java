@@ -18,8 +18,7 @@ import org.springframework.util.DigestUtils;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import static com.zsapi.backend.constant.UserConstant.ADMIN_ROLE;
-import static com.zsapi.backend.constant.UserConstant.USER_LOGIN_STATE;
+import  com.zsapi.common.constant.UserConstant;
 
 
 /**
@@ -127,8 +126,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
             log.info("user login failed, userAccount cannot match userPassword");
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "用户不存在或密码错误");
         }
+        String id = request.getSession().getId();
         // 3. 记录用户的登录态
-        request.getSession().setAttribute(USER_LOGIN_STATE, user);
+        request.getSession().setAttribute(UserConstant.USER_LOGIN_STATE, user);
         return user;
     }
 
@@ -141,7 +141,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     @Override
     public User getLoginUser(HttpServletRequest request) {
         // 先判断是否已登录
-        Object userObj = request.getSession().getAttribute(USER_LOGIN_STATE);
+        String id = request.getSession(false).getId();
+        Object userObj = request.getSession().getAttribute(UserConstant.USER_LOGIN_STATE);
         User currentUser = (User) userObj;
         if (currentUser == null || currentUser.getId() == null) {
             throw new BusinessException(ErrorCode.NOT_LOGIN_ERROR);
@@ -164,10 +165,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     @Override
     public boolean isAdmin(HttpServletRequest request) {
         // 仅管理员可查询
-        Object userObj = request.getSession().getAttribute(USER_LOGIN_STATE);
+        Object userObj = request.getSession().getAttribute(UserConstant.USER_LOGIN_STATE);
         User user = (User) userObj;
         System.out.println("我是管理员：" + user);
-        return user != null && ADMIN_ROLE.equals(user.getUserRole());
+        return user != null && UserConstant.ADMIN_ROLE.equals(user.getUserRole());
     }
 
     /**
@@ -176,11 +177,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
      */
     @Override
     public boolean userLogout(HttpServletRequest request) {
-        if (request.getSession().getAttribute(USER_LOGIN_STATE) == null) {
+        if (request.getSession().getAttribute(UserConstant.USER_LOGIN_STATE) == null) {
             throw new BusinessException(ErrorCode.OPERATION_ERROR, "未登录");
         }
         // 移除登录态
-        request.getSession().removeAttribute(USER_LOGIN_STATE);
+        request.getSession().removeAttribute(UserConstant.USER_LOGIN_STATE);
         return true;
     }
 

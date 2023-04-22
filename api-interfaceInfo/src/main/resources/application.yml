@@ -3,6 +3,8 @@ server:
   servlet:
     context-path: /api
 spring:
+  profiles:
+    active: pro
   application:
     name: api-interfaceInfo
   main:
@@ -11,13 +13,13 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 192.168.66.100:8848
+        server-addr: 120.79.49.242:8848
 dubbo:
   cloud:
-    subscribed-services: "com.zsapi.common.service.inner.InnerUserInterfaceInfoService"
+    subscribed-services: "com.zsapi.common.service,com.zsapi.common.service.inner.InnerUserService"
   registry:
     # 注册至Nacos
-    address: nacos://192.168.66.100:8848
+    address: nacos://120.79.49.242:8848
     # 超时时间
     timeout: 10000
   protocol:

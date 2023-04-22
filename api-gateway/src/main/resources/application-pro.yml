@@ -1,0 +1,36 @@
+server:
+  port: 8125
+spring:
+  main:
+    allow-bean-definition-overriding: true
+    allow-circular-references: true
+    web-application-type: reactive
+  # 应用名称
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: api_route
+          uri: http://120.79.49.242:8124
+          predicates:
+            - Path=/api/**
+    nacos:
+      discovery:
+        server-addr: 120.79.49.242:8848
+
+dubbo:
+  cloud:
+    subscribed-services: "com.zsapi.common.service,com.zsapi.common.service.UserService"
+  registry:
+    # 注册至Nacos
+    address: nacos://120.79.49.242:8848
+    # 超时时间
+    timeout: 10000
+  protocol:
+    # 协议Dubbo
+    name: dubbo
+    # 端口号
+    port: -1
+  consumer:
+    check: false

@@ -24,42 +24,37 @@ public class UserInterfaceInfo implements Serializable {
     /**
      * 调用用户 id
      */
-    private Long userid;
+    private Long userId;
 
     /**
      * 接口 id
      */
-    private Long interfaceinfoid;
+    private Long interfaceInfoId;
 
     /**
      * 总调用次数
      */
-    private Integer totalnum;
+    private Integer totalNum;
 
     /**
      * 剩余调用次数
      */
-    private Integer leftnum;
-
-    /**
-     * 0-正常， 1-禁用
-     */
-    private Integer status;
+    private Integer leftNum;
 
     /**
      * 创建时间
      */
-    private Date createtime;
+    private Date createTime;
 
     /**
      * 更新时间
      */
-    private Date updatetime;
+    private Date updateTime;
 
     /**
      * 是否删除
      */
-    private Integer isdelete;
+    private Integer isDelete;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
@@ -77,14 +72,13 @@ public class UserInterfaceInfo implements Serializable {
         }
         UserInterfaceInfo other = (UserInterfaceInfo) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getUserid() == null ? other.getUserid() == null : this.getUserid().equals(other.getUserid()))
-            && (this.getInterfaceinfoid() == null ? other.getInterfaceinfoid() == null : this.getInterfaceinfoid().equals(other.getInterfaceinfoid()))
-            && (this.getTotalnum() == null ? other.getTotalnum() == null : this.getTotalnum().equals(other.getTotalnum()))
-            && (this.getLeftnum() == null ? other.getLeftnum() == null : this.getLeftnum().equals(other.getLeftnum()))
-            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
-            && (this.getCreatetime() == null ? other.getCreatetime() == null : this.getCreatetime().equals(other.getCreatetime()))
-            && (this.getUpdatetime() == null ? other.getUpdatetime() == null : this.getUpdatetime().equals(other.getUpdatetime()))
-            && (this.getIsdelete() == null ? other.getIsdelete() == null : this.getIsdelete().equals(other.getIsdelete()));
+            && (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()))
+            && (this.getInterfaceInfoId() == null ? other.getInterfaceInfoId() == null : this.getInterfaceInfoId().equals(other.getInterfaceInfoId()))
+            && (this.getTotalNum() == null ? other.getTotalNum() == null : this.getTotalNum().equals(other.getTotalNum()))
+            && (this.getLeftNum() == null ? other.getLeftNum() == null : this.getLeftNum().equals(other.getLeftNum()))
+            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
+            && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()))
+            && (this.getIsDelete() == null ? other.getIsDelete() == null : this.getIsDelete().equals(other.getIsDelete()));
     }
 
     @Override
@@ -92,14 +86,13 @@ public class UserInterfaceInfo implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getUserid() == null) ? 0 : getUserid().hashCode());
-        result = prime * result + ((getInterfaceinfoid() == null) ? 0 : getInterfaceinfoid().hashCode());
-        result = prime * result + ((getTotalnum() == null) ? 0 : getTotalnum().hashCode());
-        result = prime * result + ((getLeftnum() == null) ? 0 : getLeftnum().hashCode());
-        result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
-        result = prime * result + ((getCreatetime() == null) ? 0 : getCreatetime().hashCode());
-        result = prime * result + ((getUpdatetime() == null) ? 0 : getUpdatetime().hashCode());
-        result = prime * result + ((getIsdelete() == null) ? 0 : getIsdelete().hashCode());
+        result = prime * result + ((getUserId() == null) ? 0 : getUserId().hashCode());
+        result = prime * result + ((getInterfaceInfoId() == null) ? 0 : getInterfaceInfoId().hashCode());
+        result = prime * result + ((getTotalNum() == null) ? 0 : getTotalNum().hashCode());
+        result = prime * result + ((getLeftNum() == null) ? 0 : getLeftNum().hashCode());
+        result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
+        result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
+        result = prime * result + ((getIsDelete() == null) ? 0 : getIsDelete().hashCode());
         return result;
     }
 
@@ -110,14 +103,13 @@ public class UserInterfaceInfo implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", userid=").append(userid);
-        sb.append(", interfaceinfoid=").append(interfaceinfoid);
-        sb.append(", totalnum=").append(totalnum);
-        sb.append(", leftnum=").append(leftnum);
-        sb.append(", status=").append(status);
-        sb.append(", createtime=").append(createtime);
-        sb.append(", updatetime=").append(updatetime);
-        sb.append(", isdelete=").append(isdelete);
+        sb.append(", userId=").append(userId);
+        sb.append(", interfaceInfoId=").append(interfaceInfoId);
+        sb.append(", totalNum=").append(totalNum);
+        sb.append(", leftNum=").append(leftNum);
+        sb.append(", createTime=").append(createTime);
+        sb.append(", updateTime=").append(updateTime);
+        sb.append(", isDelete=").append(isDelete);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

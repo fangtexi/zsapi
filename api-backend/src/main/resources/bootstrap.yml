@@ -1,0 +1,21 @@
+spring:
+  # 应用名称
+  application:
+    name: api-backend
+  cloud:
+    nacos:
+      config:
+        #服务器地址
+        server-addr: 120.79.49.242:8848
+        #默认为Public命名空间,可以省略不写 #对应建立的命名空间的UUID
+        namespace: f56212af-6b59-4c9f-b375-6bd2552b585f
+        shared-configs:
+          - data-id: db-pro.yml
+            group: MYSQL_GROUP
+            refresh: true
+  profiles:
+    active: pro
+zsapi:
+  client:
+    access-key: 21c35ad418a380484550512bc0306992
+    secret-key: 3223d3e89b8bec50b2bab1095fb5cd9b

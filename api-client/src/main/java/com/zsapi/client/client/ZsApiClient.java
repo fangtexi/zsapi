@@ -1,10 +1,10 @@
 package com.zsapi.client.client;
 
 import cn.hutool.http.HttpRequest;
-import cn.hutool.http.HttpResponse;
 import cn.hutool.json.JSONUtil;
 import com.zsapi.client.modal.entity.User;
 import com.zsapi.client.util.SignUtils;
+import com.zsapi.common.model.entity.Phone;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -26,7 +26,8 @@ public class ZsApiClient {
     private String secretKey;
 
     private final String REQUEST_PREFIX = "/api";
-    private final String HOST = "http://localhost:8125";
+    private final String HOST = "http://120.79.49.242:8125";
+    private final String LOCAL_HOST = "http://localhost:8125";
 
     /**
      * @description: 封装请求头
@@ -50,56 +51,37 @@ public class ZsApiClient {
      **/
     public String getUserNameByPost(User user) {
         String json = JSONUtil.toJsonStr(user);
-        String result = HttpRequest.post(HOST + REQUEST_PREFIX + "/name/user")
+        return HttpRequest.post(HOST + REQUEST_PREFIX + "/name/user")
                 // 添加请求头
                 .addHeaders(getHeaders())
                 .body(json)
                 .execute().body();
-        return result;
     }
-    
-    /**
-     * @description: 舔狗语录
-     * @author: zzs
-     * @date: 2023/4/3 20:45
-     * @return: java.lang.String
-     **/
-    public String getLoveWordsByGet() {
-        String result = HttpRequest.get(HOST + REQUEST_PREFIX + "/love/words")
-                // 添加请求头
-                .addHeaders(getHeaders())
-                .execute().body();
-        return result;
-    }
-    
+
     /**
      * 获取搞笑语句
      * @author: zzs
      * @date: 2023/4/3 22:21
      * @return: java.lang.String
      **/
-    public String getFunnyWords() {
-        String result = HttpRequest.get(HOST + REQUEST_PREFIX + "/funny/words")
+    public String getFunnyWordsRand() {
+
+        return HttpRequest.get(HOST + REQUEST_PREFIX + "/funny/getFunnyWordsRand")
                 // 添加请求头
                 .addHeaders(getHeaders())
                 .execute().body();
-
-        return result;
     }
-    
+
     /**
-     * 获取ip地址
-     * @author: zzs
-     * @date: 2023/4/3 22:36
-     * @return: java.lang.String
-     **/
-    public String getIP() {
-        String result = HttpRequest.get(HOST + REQUEST_PREFIX + "/ip")
+     * 获取手机号归属地
+     * @param phone
+     * @return
+     */
+    public String getPhoneArea(Phone phone) {
+        return HttpRequest.get(HOST + REQUEST_PREFIX + "/phonearea?number=" + phone.getNumber())
                 // 添加请求头
                 .addHeaders(getHeaders())
                 .execute().body();
-        return result;
     }
-
 
 }

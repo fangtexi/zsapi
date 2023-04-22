@@ -23,10 +23,21 @@ public class InnerUserInterfaceInfoServiceImpl implements InnerUserInterfaceInfo
 
     @Autowired
     private UserInterfaceInfoService userInterfaceInfoService;
-    // 增加invokeCount方法的并发安全性
 
     @Override
     public boolean invokeCount(long interfaceInfoId, long userId) {
         return userInterfaceInfoService.invokeCount(interfaceInfoId, userId);
     }
+
+    @Override
+    public boolean invokeCountAdmin(long interfaceInfoId, long userId) {
+        return userInterfaceInfoService.invokeCountAdmin(interfaceInfoId, userId);
+    }
+
+    @Override
+    public boolean getLeftNum(long interfaceInfoId, long userId) {
+        return userInterfaceInfoService.getLeftNum(interfaceInfoId, userId);
+    }
+
+
 }

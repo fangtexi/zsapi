@@ -58,6 +58,7 @@ public class InterfaceInfoController {
      * @return
      */
     @PostMapping("/add")
+    @AuthCheck(mustRole = "admin")
     public BaseResponse<Long> addInterfaceInfo(@RequestBody InterfaceInfoAddRequest interfaceInfoAddRequest, HttpServletRequest request) {
         if (interfaceInfoAddRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
@@ -84,6 +85,7 @@ public class InterfaceInfoController {
      * @return
      */
     @PostMapping("/delete")
+    @AuthCheck(mustRole = "admin")
     public BaseResponse<Boolean> deleteInterfaceInfo(@RequestBody DeleteRequest deleteRequest, HttpServletRequest request) {
         if (deleteRequest == null || deleteRequest.getId() <= 0) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
@@ -111,6 +113,7 @@ public class InterfaceInfoController {
      * @return
      */
     @PostMapping("/update")
+    @AuthCheck(mustRole = "admin")
     public BaseResponse<Boolean> updateInterfaceInfo(@RequestBody InterfaceInfoUpdateRequest interfaceInfoUpdateRequest,
                                                      HttpServletRequest request) {
         if (interfaceInfoUpdateRequest == null || interfaceInfoUpdateRequest.getId() <= 0) {
@@ -127,8 +130,9 @@ public class InterfaceInfoController {
         if (infoServiceById == null) {
             throw new BusinessException(ErrorCode.NOT_FOUND_ERROR);
         }
+        log.info("true?" + infoServiceById.getUserId().equals(user.getId()));
         // 仅本人或管理员可修改
-        if (infoServiceById.getUserId().equals(user.getId()) || userService.isAdmin(request)) {
+        if (!infoServiceById.getUserId().equals(user.getId()) || !userService.isAdmin(request)) {
             throw new BusinessException(ErrorCode.NO_AUTH_ERROR);
         }
         boolean result = interfaceInfoService.updateById(interfaceInfo);
@@ -336,5 +340,4 @@ public class InterfaceInfoController {
     }
 
     // endregion
-
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsapi.backend.mapper.FunnyMapper">
+
+    <resultMap id="BaseResultMap" type="com.zsapi.common.model.entity.Funny">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="funnyWords" column="funnyWords" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,funnyWords
+    </sql>
+
+    <!-- 随机获取一条数据   -->
+    <select id="getFunnyWordsRand" resultType="com.zsapi.common.model.entity.Funny">
+        SELECT * FROM funny as f WHERE f.id >= (RAND()*(SELECT MAX(id) FROM funny)) LIMIT 1
+    </select>
+</mapper>

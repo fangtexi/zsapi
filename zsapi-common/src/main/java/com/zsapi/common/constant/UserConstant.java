@@ -1,4 +1,4 @@
-package com.zsapi.backend.constant;
+package com.zsapi.common.constant;
 
 /**
  * 用户常量

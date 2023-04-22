@@ -14,8 +14,9 @@ class ApiBackendApplicationTests {
 
     @Test
     void contextLoads() {
-        String name = zsApiClient.getUserNameByPost(new User("zzs"));
-        System.out.println(name);
+//        String name = zsApiClient.getUserNameByPost(new User("zzs"));
+//        String phoneArea = zsApiClient.getPhoneArea("18850482356");
+//        System.out.println(phoneArea);
     }
 
 }

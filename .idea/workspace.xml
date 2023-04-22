@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="GROUP_BY_SEVERITY" value="true" />
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="869f7cbd-0027-44d3-a4e6-3b490630fd1b" name="Changes" comment="优化代码">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/f569d805-afb6-4b2d-b70f-005ed987b3dc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/f569d805-afb6-4b2d-b70f-005ed987b3dc/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/f569d805-afb6-4b2d-b70f-005ed987b3dc/storage_v2/_src_/schema/mysql.osA4Bg.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/f569d805-afb6-4b2d-b70f-005ed987b3dc/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/f569d805-afb6-4b2d-b70f-005ed987b3dc/storage_v2/_src_/schema/sys.zb4BAA.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/mybatisx/templates.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-backend/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-backend/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-backend/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-backend/src/main/java/com/zsapi/backend/controller/AnalysisController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-backend/src/main/java/com/zsapi/backend/mapper/FunnyMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-backend/src/main/java/com/zsapi/backend/model/vo/InterfaceInfoVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-backend/src/main/java/com/zsapi/backend/service/FunnyServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-backend/src/main/resources/bootstrap.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-backend/src/main/resources/mapper/FunnyMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-gateway/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-gateway/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-gateway/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/application-pro.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-interfaceInfo/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-interfaceInfo/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-interfaceInfo/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-interfaceInfo/src/main/java/com/zsapi/controller/funnyWordsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-interfaceInfo/src/main/java/com/zsapi/model/entity/Phone.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-interfaceInfo/src/main/resources/application-pro.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zsapi-common/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zsapi-common/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zsapi-common/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zsapi-common/src/main/java/com/zsapi/common/constant/InterFaceInfoConstant.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zsapi-common/src/main/java/com/zsapi/common/model/entity/Funny.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zsapi-common/src/main/java/com/zsapi/common/model/entity/Phone.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zsapi-common/src/main/java/com/zsapi/common/service/FunnyService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api-backend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-backend/src/main/java/com/zsapi/backend/annotation/AuthCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-backend/src/main/java/com/zsapi/backend/annotation/AuthCheck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-backend/src/main/java/com/zsapi/backend/constant/UserConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/zsapi-common/src/main/java/com/zsapi/common/constant/UserConstant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-backend/src/main/java/com/zsapi/backend/controller/InterfaceInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-backend/src/main/java/com/zsapi/backend/controller/InterfaceInfoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-backend/src/main/java/com/zsapi/backend/mapper/UserInterfaceInfoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-backend/src/main/java/com/zsapi/backend/mapper/UserInterfaceInfoMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-backend/src/main/java/com/zsapi/backend/service/UserInterfaceInfoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-backend/src/main/java/com/zsapi/backend/service/UserInterfaceInfoServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-backend/src/main/java/com/zsapi/backend/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-backend/src/main/java/com/zsapi/backend/service/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-backend/src/main/java/com/zsapi/backend/service/inner/InnerUserInterfaceInfoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-backend/src/main/java/com/zsapi/backend/service/inner/InnerUserInterfaceInfoServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-backend/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api-backend/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-backend/src/main/resources/mapper/UserInterfaceInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api-backend/src/main/resources/mapper/UserInterfaceInfoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-backend/src/test/java/com/zsapi/backend/ApiBackendApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-backend/src/test/java/com/zsapi/backend/ApiBackendApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/src/main/java/com/zsapi/client/ApiClientApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/src/main/java/com/zsapi/client/ApiClientApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/src/main/java/com/zsapi/client/client/ZsApiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/src/main/java/com/zsapi/client/client/ZsApiClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/java/com/zsapi/gateway/CustomerGlobalFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/java/com/zsapi/gateway/CustomerGlobalFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-interfaceInfo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api-interfaceInfo/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-interfaceInfo/src/main/java/com/zsapi/ApiInterfaceInfoApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-interfaceInfo/src/main/java/com/zsapi/ApiInterfaceInfoApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-interfaceInfo/src/main/java/com/zsapi/controller/InterfaceInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-interfaceInfo/src/main/java/com/zsapi/controller/InterfaceInfoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-interfaceInfo/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api-interfaceInfo/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zsapi-common/src/main/java/com/zsapi/common/model/entity/UserInterfaceInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/zsapi-common/src/main/java/com/zsapi/common/model/entity/UserInterfaceInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zsapi-common/src/main/java/com/zsapi/common/service/UserInterfaceInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/zsapi-common/src/main/java/com/zsapi/common/service/UserInterfaceInfoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zsapi-common/src/main/java/com/zsapi/common/service/inner/InnerUserInterfaceInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/zsapi-common/src/main/java/com/zsapi/common/service/inner/InnerUserInterfaceInfoService.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="alwaysUpdateSnapshots" value="true" />
+        <option name="localRepository" value="D:\maven\repository" />
+        <option name="useMavenConfig" value="true" />
+        <option name="userSettingsFile" value="D:\maven\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="MavenRunner">
+    <option name="delegateBuildToMaven" value="true" />
+    <option name="skipTests" value="true" />
+  </component>
+  <component name="ProjectId" id="2NHYjlEGwo7tyMFX2ZFzYmVpnCS" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+    <option name="sortByType" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/项目资料/API 开放平台项目/zsapi/api-interfaceInfo/src/main/resources&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;951282671c84e39ea07a35934c6745e0&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\项目资料\API 开放平台项目\zsapi\api-interfaceInfo\src\main\resources" />
+      <recent name="D:\项目资料\API 开放平台项目\zsapi\api-gateway\src\main\resources" />
+      <recent name="D:\项目资料\API 开放平台项目\zsapi\api-backend\src\main\resources" />
+      <recent name="D:\项目\zsapi\api-interfaceInfo\src\main\resources" />
+      <recent name="D:\项目\zsapi\api-gateway\src\main\resources" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\项目资料\API 开放平台项目\zsapi\api-gateway\src\main\resources" />
+      <recent name="D:\项目\zsapi\api-backend\src\main\resources\mapper" />
+      <recent name="D:\项目\zsapi\api-interfaceInfo\src\main\resources\mapper" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.zsapi.common.model.entity" />
+      <recent name="com.zsapi.common.constant" />
+      <recent name="com.zsapi.backend.mapper" />
+      <recent name="com.zsapi.backend.service.impl" />
+      <recent name="com.zsapi.gateway.utils" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationTyp e" />
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Remote JVM Debug.remoteBackend">
+    <configuration name="ApiBackendApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="api-backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zsapi.backend.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.zsapi.backend" />
+      <option name="MAIN_CLASS_NAME" value="com.zsapi.backend.ApiBackendApplicationTests" />
+      <option name="METHOD_NAME" value="contextLoads" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ApiGatewayApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="api-gateway" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zsapi.gateway.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.zsapi.gateway" />
+      <option name="MAIN_CLASS_NAME" value="com.zsapi.gateway.ApiGatewayApplicationTests" />
+      <option name="METHOD_NAME" value="contextLoads" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ApiInterfaceInfoApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="api-interfaceInfo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zsapi.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.zsapi" />
+      <option name="MAIN_CLASS_NAME" value="com.zsapi.ApiInterfaceInfoApplicationTests" />
+      <option name="METHOD_NAME" value="contextLoads" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="remoteBackend" type="Remote">
+      <module name="api-interfaceInfo" />
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" />
+      <option name="HOST" value="120.79.49.242" />
+      <option name="PORT" value="8120" />
+      <option name="AUTO_RESTART" value="false" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="8120" />
+        <option name="LOCAL" value="false" />
+      </RunnerSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="remoteGateway" type="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" />
+      <option name="HOST" value="120.79.49.242" />
+      <option name="PORT" value="8121" />
+      <option name="AUTO_RESTART" value="false" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="8121" />
+        <option name="LOCAL" value="false" />
+      </RunnerSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="remoteInterfaceInfo" type="Remote">
+      <module name="api-interfaceInfo" />
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" />
+      <option name="HOST" value="120.79.49.242" />
+      <option name="PORT" value="8122" />
+      <option name="AUTO_RESTART" value="false" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="8121" />
+        <option name="LOCAL" value="false" />
+      </RunnerSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="ApiBackendApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="api-backend" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.zsapi.backend.ApiBackendApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ApiBackendApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="api-backend" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.zsapi.backend.ApiBackendApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ApiGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="api-gateway" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.zsapi.gateway.ApiGatewayApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zsapi.gateway.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ApiInterfaceInfoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="api-interfaceInfo" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.zsapi.ApiInterfaceInfoApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zsapi.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.ApiBackendApplicationTests.contextLoads" />
+      <item itemvalue="JUnit.ApiGatewayApplicationTests.contextLoads" />
+      <item itemvalue="JUnit.ApiInterfaceInfoApplicationTests.contextLoads" />
+      <item itemvalue="Remote JVM Debug.remoteBackend" />
+      <item itemvalue="Remote JVM Debug.remoteGateway" />
+      <item itemvalue="Remote JVM Debug.remoteInterfaceInfo" />
+      <item itemvalue="Spring Boot.ApiBackendApplication (1)" />
+      <item itemvalue="Spring Boot.ApiBackendApplication" />
+      <item itemvalue="Spring Boot.ApiGatewayApplication" />
+      <item itemvalue="Spring Boot.ApiInterfaceInfoApplication" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.ApiInterfaceInfoApplication" />
+        <item itemvalue="Spring Boot.ApiGatewayApplication" />
+        <item itemvalue="JUnit.ApiBackendApplicationTests.contextLoads" />
+        <item itemvalue="JUnit.ApiInterfaceInfoApplicationTests.contextLoads" />
+        <item itemvalue="JUnit.ApiGatewayApplicationTests.contextLoads" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="869f7cbd-0027-44d3-a4e6-3b490630fd1b" name="Changes" comment="" />
+      <created>1679322617559</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1679322617559</updated>
+      <workItem from="1679322623240" duration="248000" />
+      <workItem from="1679322895322" duration="636000" />
+      <workItem from="1679323556478" duration="36000" />
+      <workItem from="1679323612468" duration="2039000" />
+      <workItem from="1679371444589" duration="4000" />
+      <workItem from="1679403092773" duration="6983000" />
+      <workItem from="1679487822324" duration="1996000" />
+      <workItem from="1679492034480" duration="2193000" />
+      <workItem from="1679494441292" duration="486000" />
+      <workItem from="1679579130637" duration="2683000" />
+      <workItem from="1679659343374" duration="4116000" />
+      <workItem from="1679664222298" duration="2419000" />
+      <workItem from="1679747578316" duration="2493000" />
+      <workItem from="1679750149662" duration="7057000" />
+      <workItem from="1679829744967" duration="1724000" />
+      <workItem from="1679834797919" duration="4386000" />
+      <workItem from="1679925426225" duration="1733000" />
+      <workItem from="1680006326783" duration="699000" />
+      <workItem from="1680090133142" duration="1313000" />
+      <workItem from="1680091874605" duration="7960000" />
+      <workItem from="1680100587650" duration="933000" />
+      <workItem from="1680101568327" duration="146000" />
+      <workItem from="1680182117514" duration="3584000" />
+      <workItem from="1680185805912" duration="1490000" />
+      <workItem from="1680187319131" duration="2153000" />
+      <workItem from="1680189502005" duration="1154000" />
+      <workItem from="1680235583396" duration="41000" />
+      <workItem from="1680235645238" duration="371000" />
+      <workItem from="1680236039315" duration="126000" />
+      <workItem from="1680236435283" duration="952000" />
+      <workItem from="1680267626493" duration="3051000" />
+      <workItem from="1680444460874" duration="1530000" />
+      <workItem from="1680522503357" duration="11615000" />
+      <workItem from="1680610233257" duration="8254000" />
+      <workItem from="1680786346061" duration="6003000" />
+      <workItem from="1680866621621" duration="8007000" />
+      <workItem from="1680956574198" duration="3856000" />
+      <workItem from="1681033957261" duration="11635000" />
+      <workItem from="1681091812894" duration="1009000" />
+      <workItem from="1681092871810" duration="482000" />
+      <workItem from="1681111161104" duration="14000" />
+      <workItem from="1681128715732" duration="7998000" />
+      <workItem from="1681137146838" duration="707000" />
+      <workItem from="1681139042464" duration="1350000" />
+      <workItem from="1681187074650" duration="1000" />
+      <workItem from="1681285129287" duration="3065000" />
+      <workItem from="1681289997054" duration="1000" />
+      <workItem from="1681290015005" duration="524000" />
+      <workItem from="1681292389487" duration="60000" />
+      <workItem from="1681292458260" duration="188000" />
+      <workItem from="1681292751837" duration="2000" />
+      <workItem from="1681303107006" duration="143000" />
+      <workItem from="1681303270454" duration="185000" />
+      <workItem from="1681303463824" duration="4733000" />
+      <workItem from="1681371396023" duration="102000" />
+      <workItem from="1681390196856" duration="3998000" />
+      <workItem from="1681452651695" duration="2000" />
+      <workItem from="1681473022344" duration="5634000" />
+      <workItem from="1681478679011" duration="3882000" />
+      <workItem from="1681633696434" duration="131000" />
+      <workItem from="1681648374647" duration="2125000" />
+      <workItem from="1681650511146" duration="2175000" />
+      <workItem from="1681652698991" duration="1034000" />
+      <workItem from="1681653742517" duration="604000" />
+      <workItem from="1681654359737" duration="1072000" />
+      <workItem from="1681655443165" duration="839000" />
+      <workItem from="1681656724184" duration="54000" />
+      <workItem from="1681706515104" duration="23000" />
+      <workItem from="1681734515638" duration="9638000" />
+      <workItem from="1681744179244" duration="1294000" />
+      <workItem from="1681746212975" duration="368000" />
+      <workItem from="1681821988351" duration="2375000" />
+      <workItem from="1681869180969" duration="1320000" />
+      <workItem from="1681883298841" duration="2000" />
+      <workItem from="1681902722955" duration="55000" />
+      <workItem from="1681902788341" duration="3075000" />
+      <workItem from="1681905869474" duration="24000" />
+      <workItem from="1681905905277" duration="10905000" />
+      <workItem from="1681982284506" duration="5530000" />
+      <workItem from="1682050421773" duration="6000" />
+      <workItem from="1682161181763" duration="2221000" />
+      <workItem from="1682163778682" duration="1754000" />
+    </task>
+    <task id="LOCAL-00001" summary="增加公共模块">
+      <created>1679662343308</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1679662343308</updated>
+    </task>
+    <task id="LOCAL-00002" summary="增加业务方法">
+      <created>1679666580755</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1679666580755</updated>
+    </task>
+    <task id="LOCAL-00003" summary="增加用户接口表的service entity mapper">
+      <created>1679748314236</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1679748314236</updated>
+    </task>
+    <task id="LOCAL-00004" summary="搭建nacos">
+      <created>1679751874847</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1679751874847</updated>
+    </task>
+    <task id="LOCAL-00005" summary="逻辑完善">
+      <created>1680101491996</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1680101491996</updated>
+    </task>
+    <task id="LOCAL-00006" summary="完善代码">
+      <created>1680534844241</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1680534844241</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="增加公共模块" />
+    <MESSAGE value="增加业务方法" />
+    <MESSAGE value="增加用户接口表的service entity mapper" />
+    <MESSAGE value="搭建nacos" />
+    <MESSAGE value="逻辑完善" />
+    <MESSAGE value="完善代码" />
+    <MESSAGE value="优化代码" />
+    <option name="LAST_COMMIT_MESSAGE" value="优化代码" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

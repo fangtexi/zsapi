@@ -1,15 +1,18 @@
 package com.zsapi.gateway;
 
 import com.zsapi.client.util.SignUtils;
+import com.zsapi.common.constant.UserConstant;
 import com.zsapi.common.model.entity.InterfaceInfo;
 import com.zsapi.common.model.entity.User;
 import com.zsapi.common.service.UserService;
 import com.zsapi.common.service.inner.InnerInterfaceInfoService;
+import com.zsapi.common.service.inner.InnerUserInterfaceInfoService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.reactivestreams.Publisher;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.core.Ordered;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.core.io.buffer.DataBufferFactory;
@@ -41,11 +44,16 @@ import java.util.List;
 public class CustomerGlobalFilter implements GlobalFilter, Ordered {
 
     @DubboReference(check = false)
+    @Lazy
     private UserService userService;
     @DubboReference(check = false)
+    @Lazy
     private InnerInterfaceInfoService innerInterfaceInfoService;
+    @DubboReference(check = false)
+    @Lazy
+    private InnerUserInterfaceInfoService innerUserInterfaceInfoService;
 
-    private final String INTERFACE_HOST = "http://localhost:8123";
+    private final String INTERFACE_HOST = "http://120.79.49.242:8123";
 
     private static final List<String> IP_WHITE_LIST = Arrays.asList("127.0.0.1","localhost");
 
@@ -92,15 +100,23 @@ public class CustomerGlobalFilter implements GlobalFilter, Ordered {
         try {
             //调用dubbo中的公共方法，查询接口是否存在
             interfaceInfo = innerInterfaceInfoService.getInterfaceInfo(path, method);
-
         } catch (Exception e) {
             log.error("getInterfaceInfo error",e);
         }
         if (interfaceInfo == null) {
             return handleNoAuth(response);
         }
+        // 如果用户不是admin则需要判断是否还有调用次数
+        if (!user.getUserRole().equals(UserConstant.ADMIN_ROLE)) {
+            // 是否还有调用次数
+            boolean leftNum = innerUserInterfaceInfoService.getLeftNum(interfaceInfo.getId(), user.getId());
+            if (!leftNum) {
+                return handleNoAuth(response);
+            }
+        }
+
         // 6. 利用response装饰者，增强原有response的处理能力
-        return handleResponse(exchange,chain);
+        return handleResponse(exchange,chain,interfaceInfo,user);
     }
 
     @Override
@@ -140,7 +156,7 @@ public class CustomerGlobalFilter implements GlobalFilter, Ordered {
      * @param: chain
      * @return: reactor.core.publisher.Mono<java.lang.Void>
      **/
-    public Mono<Void> handleResponse(ServerWebExchange exchange,GatewayFilterChain chain) {
+    public Mono<Void> handleResponse(ServerWebExchange exchange,GatewayFilterChain chain,InterfaceInfo interfaceInfo,User user) {
         try {
             //从交换器中拿响应对象
             ServerHttpResponse originalResponse = exchange.getResponse();
@@ -163,7 +179,15 @@ public class CustomerGlobalFilter implements GlobalFilter, Ordered {
                             //往返回值里面写数据
                             //拼接字符串
                             return super.writeWith(fluxBody.map(dataBuffer -> {
-                                // 7. 接口调用成功，接口调用次数加 1 todo 接口调用次数+1
+                                log.info("增加调用次数");
+                                log.info(user.getUserRole());
+                                // 7. 接口调用次数+1
+                                if (!user.getUserRole().equals(UserConstant.ADMIN_ROLE)){
+                                    innerUserInterfaceInfoService.invokeCount(interfaceInfo.getId(), user.getId());
+                                }else {
+                                    log.info("admin调用接口");
+                                    innerUserInterfaceInfoService.invokeCountAdmin(interfaceInfo.getId(), user.getId());
+                                }
                                 byte[] content = new byte[dataBuffer.readableByteCount()];
                                 dataBuffer.read(content);
                                 DataBufferUtils.release(dataBuffer);//释放掉内存

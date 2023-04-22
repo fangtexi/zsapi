@@ -6,31 +6,20 @@ spring:
   main:
     allow-bean-definition-overriding: true
     allow-circular-references: true
-  application:
-    name: api-backend
-  # DataSource Config
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/zsapi
-    username: root
-    password: root
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
-  # session ????????
   session:
     timeout: 86400
     store-type: redis
-  # redis ??
-  redis:
-    port: 6379
-    host: 192.168.66.100
-    database: 0
-  # cloud
+  # 应用名称
+  application:
+    name: api-backend
   cloud:
     nacos:
       discovery:
-        server-addr: 192.168.66.100:8848
+        server-addr: 120.79.49.242:8848
+
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: false
@@ -43,17 +32,16 @@ mybatis-plus:
 # dubbo
 dubbo:
   cloud:
-    subscribed-services: api-backend
+    subscribed-services: "api-backend"
   scan:
     base-packages: com.zsapi.backend.service
   registry:
-    address: nacos://${spring.cloud.nacos.discovery.server-addr}
+    address: nacos://120.79.49.242:8848
     timeout: 10000
   protocol:
     name: dubbo
     port: -1
-
 zsapi:
   client:
-    access-key: 2294ad69a3c0f703b3e0c66ce5fa53b9
-    secret-key: ea5301967be0fe114c851f4b5dc8d130
+    access-key: 21c35ad418a380484550512bc0306992
+    secret-key: 3223d3e89b8bec50b2bab1095fb5cd9b
