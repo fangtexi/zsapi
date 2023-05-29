@@ -9,5 +9,10 @@
  - Redis
  
  # 模块介绍
+- api-backend：后台系统
+- api-gateway：网关
+- api-interfaceInfo：接口系统
+- api-client：客户端 SDK
+- zsapi-common：公共模块
 
 
